@@ -1,7 +1,5 @@
 package com.example.instaapp.ui.login.presentation
 
-import android.net.Uri
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,9 +13,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.instaapp.data.model.User
+import com.example.instagramcloneapp.R
 
 @Composable
 fun LoginScreen(
@@ -43,21 +42,23 @@ fun LoginScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(dimensionResource(id = R.dimen.padding_16)),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = "Instagram Login",
             style = MaterialTheme.typography.h4,
-            modifier = Modifier.padding(bottom = 32.dp)
+            modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.padding_32))
         )
 
         Button(
             onClick = {
-                val customTabsIntent = CustomTabsIntent.Builder().build()
+                onLoginSuccess(User("12312321", "Muhittin", "aukjgfkjab")) // Replace with actual user data
+
+               /* val customTabsIntent = CustomTabsIntent.Builder().build()
                 val uri = Uri.parse(authUrl)
-                customTabsIntent.launchUrl(context, uri)
+                customTabsIntent.launchUrl(context, uri)*/
             },
             modifier = Modifier.fillMaxWidth()
         ) {

@@ -3,10 +3,9 @@ package com.example.instaapp.data.repository
 import com.example.instaapp.ui.home.data.model.InstPost
 import com.example.instaapp.data.network.ApiClient
 
-class InstRepository {
-    private val apiService = ApiClient.apiService
+interface InstRepository {
+    suspend fun getUserMedia(userId: String, accessToken: String): List<InstPost>
 
-    suspend fun getUserMedia(userId: String, accessToken: String): List<InstPost> {
-        return apiService.getUserMedia(userId, accessToken)
-    }
+    //TODO Mock data denemeleri için eklendi.
+    suspend fun getUserMediaMock(userId: String, accessToken: String): List<InstPost>
 }
