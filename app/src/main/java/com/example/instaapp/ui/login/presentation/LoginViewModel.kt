@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor() : ViewModel() {
-    private val _user = MutableLiveData<User>()
+    val _user = MutableLiveData<User>()
     val user: LiveData<User> get() = _user
 
     fun login(code: String) {
