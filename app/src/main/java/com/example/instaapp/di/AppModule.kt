@@ -3,6 +3,9 @@ package com.example.instaapp.di
 import com.example.instaapp.data.network.InstApiService
 import com.example.instaapp.data.repository.InstRepository
 import com.example.instaapp.data.repository.InstRepositoryImpl
+import com.example.instaapp.ui.detail.domain.GetPostCommentsUseCase
+import com.example.instaapp.ui.detail.domain.GetPostDetailUseCase
+import com.example.instaapp.ui.detail.presentation.PostDetailViewModel
 import com.example.instaapp.ui.home.domain.GetUserMediaUseCase
 import dagger.Module
 import dagger.Provides
@@ -41,5 +44,23 @@ object AppModule {
     @Singleton
     fun provideGetUserMedia(repository: InstRepository): GetUserMediaUseCase {
         return GetUserMediaUseCase(repository)
+    }
+
+    @Provides
+    fun provideGetPostDetailUseCase(repository: InstRepository): GetPostDetailUseCase {
+        return GetPostDetailUseCase(repository)
+    }
+
+    @Provides
+    fun provideGetPostCommentsUseCase(repository: InstRepository): GetPostCommentsUseCase {
+        return GetPostCommentsUseCase(repository)
+    }
+
+    @Provides
+    fun providePostDetailViewModel(
+        getPostDetailUseCase: GetPostDetailUseCase,
+        getPostCommentsUseCase: GetPostCommentsUseCase
+    ): PostDetailViewModel {
+        return PostDetailViewModel(getPostDetailUseCase, getPostCommentsUseCase)
     }
 }
